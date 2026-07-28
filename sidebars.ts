@@ -10,6 +10,7 @@ const sidebars: SidebarsConfig = {
         'manual/index',
         'manual/primeiros-passos',
         'manual/casos',
+        'manual/crm',
         'manual/sincronizacao',
         'manual/prazos',
         'manual/documentos',
