@@ -92,12 +92,32 @@ Para **excluir** um evento:
 A exclusão de um evento não pode ser desfeita.
 :::
 
+## Só os meus
+
+O toggle **Só os meus** filtra o calendário para exibir apenas os eventos e prazos vinculados ao usuário logado — útil para advogados que querem focar na própria agenda sem ver a de colegas.
+
+- **Onde fica:** canto superior direito do calendário, ao lado do seletor de visualização
+- **Como funciona:** ao ativar, somente os eventos em que você é criador, responsável ou participante, e os prazos em que você é responsável, ficam visíveis
+- **Persistência:** a preferência é salva automaticamente e continua ativa ao reabrir o calendário
+- **Desativar:** clique novamente no toggle para voltar à visão completa
+
+:::info Administradores e Secretárias
+Quando o toggle **Só os meus** está ativo, o seletor de filtro por advogado é desabilitado. Desative o toggle para usar o filtro por membro da equipe.
+:::
+
+## Importar agenda de outro sistema
+
+Para importar eventos de outro sistema jurídico, acesse **Configurações > Importar Agenda**. Atualmente suportado: **Projuris** (arquivo CSV). O assistente guia o processo em 3 etapas: upload, pré-visualização e confirmação.
+
+Para instruções detalhadas, consulte [Importar Agenda](./configuracoes#importar-agenda).
+
 ## Dicas de uso
 
 - **Use o tipo correto** — "Tarefa" tem campo Responsável; use para delegar providências. "Reunião" tem campo Participantes; use para encontros.
 - **Vincule ao caso** — Eventos vinculados ficam visíveis também na aba **Eventos** dentro do caso.
 - **Dia todo** — Marque audiências e eventos sem horário fixo como "Dia todo" para evitar poluição no calendário.
 - **Filtro por advogado** — Administradores podem checar a agenda de qualquer membro da equipe para evitar conflitos de horário.
+- **Só os meus** — Ative o toggle quando precisar focar na sua própria agenda.
 
 ## Próximos passos
 

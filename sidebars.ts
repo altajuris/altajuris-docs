@@ -14,6 +14,7 @@ const sidebars: SidebarsConfig = {
         'manual/sincronizacao',
         'manual/prazos',
         'manual/calendario',
+        'manual/tarefas',
         'manual/documentos',
         'manual/certificados',
         'manual/ia',

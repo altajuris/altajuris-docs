@@ -156,6 +156,49 @@ O faturamento é gerenciado via **Asaas**:
 Novos usuários possuem um período de teste gratuito. Ao final do período, será necessário assinar um plano para continuar usando a plataforma.
 :::
 
+## Importar Agenda {#importar-agenda}
+
+A importação de agenda permite trazer eventos de outros sistemas jurídicos para o AltaJuris sem redigitar manualmente cada compromisso. Os eventos são vinculados automaticamente aos processos existentes pelo número CNJ.
+
+:::info Permissão necessária
+O recurso de importação de agenda está disponível apenas para **Administradores** e **Secretárias**.
+:::
+
+### Sistema suportado: Projuris
+
+Exporte a agenda do Projuris em formato CSV com delimitador `;`. O arquivo deve conter as colunas: `Título`, `Início`, `Término`, `Dia todo`, `Cumprido`, `Observações`.
+
+### Como importar
+
+A importação ocorre em três etapas:
+
+#### Etapa 1 — Upload do arquivo
+
+1. Acesse **Configurações > Importar Agenda**
+2. Clique em **Selecionar arquivo** e escolha o CSV exportado do Projuris
+3. Clique em **Avançar**
+
+#### Etapa 2 — Pré-visualização
+
+O sistema processa o arquivo e exibe uma tabela com os eventos encontrados. Para cada evento:
+
+- **Título** — Descrição do compromisso
+- **Data e hora** — Início e término (ou "Dia todo")
+- **Caso vinculado** — Número CNJ detectado no título é usado para localizar o processo automaticamente; exibe "—" se não encontrado ou se o processo não consta no AltaJuris
+- **Status** — Indica se o evento pode ser importado (`✓ OK`) ou se há problema
+
+Revise a pré-visualização. Eventos com erros de data ou formato são marcados e não serão importados.
+
+#### Etapa 3 — Confirmação e importação
+
+1. Confira o resumo: total de eventos, quantos serão importados e quantos ignorados
+2. Clique em **Importar [N] eventos**
+3. Aguarde a conclusão. Uma mensagem confirma quantos eventos foram criados no calendário
+
+:::tip Vinculação automática ao caso
+O sistema extrai o número CNJ do título de cada evento (formato `NNNNNNN-DD.AAAA.J.TT.OOOO`) e busca o processo correspondente no AltaJuris. Eventos cujo número não corresponde a nenhum processo importado ficam sem vínculo de caso — mas ainda são criados normalmente no calendário.
+:::
+
 ## Dados do escritório
 
 Em **Configurações > Escritório**, gerencie as informações do escritório:
