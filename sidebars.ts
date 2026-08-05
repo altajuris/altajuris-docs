@@ -13,11 +13,13 @@ const sidebars: SidebarsConfig = {
         'manual/crm',
         'manual/sincronizacao',
         'manual/prazos',
+        'manual/calendario',
         'manual/documentos',
         'manual/certificados',
         'manual/ia',
         'manual/notificacoes',
         'manual/configuracoes',
+        'manual/usuarios',
       ],
     },
     {

@@ -10,16 +10,26 @@ O CRM do AltaJuris centraliza todas as pessoas e empresas que o escritório prec
 
 ## Visão geral
 
-Acesse **CRM** na sidebar para ver o painel de contatos. O painel tem duas abas:
+Acesse **CRM** na sidebar para ver o painel de contatos.
+
+### Busca global
+
+No topo do painel há uma barra de busca unificada. Ao digitar **2 ou mais caracteres**, a exibição de abas é substituída por uma lista única de resultados que inclui simultaneamente clientes e contatos de todas as categorias. Cada resultado exibe um badge colorido indicando sua categoria (verde para clientes, vermelho para partes contrárias etc.), e um resumo do tipo "5 resultados — 2 Clientes · 3 Partes contrárias" aparece acima da lista.
+
+Clique no **×** à direita da barra para limpar a busca e retornar à visualização por abas.
+
+:::tip Busca por CPF/CNPJ
+A busca ignora formatação — `038.393.298-09` e `03839329809` retornam o mesmo resultado.
+:::
+
+### Abas (sem busca ativa)
+
+Quando a barra de busca está vazia, o painel exibe duas abas:
 
 | Aba | O que exibe |
 |---|---|
 | **Clientes** | Contatos com categoria "Cliente" — quem contrata o escritório |
-| **Contatos** | Todos os contatos cadastrados (clientes + partes contrárias + outros) |
-
-:::tip Busca por CPF/CNPJ
-Use a barra de busca para encontrar qualquer contato pelo nome, CPF ou CNPJ. A busca ignora formatação — `038.393.298-09` e `03839329809` retornam o mesmo resultado.
-:::
+| **Contatos** | Todos os contatos (partes contrárias, testemunhas, peritos e outros) |
 
 ## Cadastrar novo contato
 
@@ -112,11 +122,16 @@ Você pode vincular um contato existente a um caso diretamente:
 
 ## Buscar e filtrar contatos
 
-Na lista de contatos, você pode:
+### Busca global (acima das abas)
+
+A barra de busca global no topo do painel pesquisa em **clientes e contatos ao mesmo tempo**. Use-a para encontrar qualquer pessoa ou empresa pelo nome, CPF ou CNPJ independente de qual aba ela está.
+
+### Busca por aba
+
+Dentro de cada aba há uma barra de busca secundária para filtrar apenas os contatos daquela categoria. Você também pode filtrar por categoria usando o seletor à direita da barra.
 
 - **Buscar** pelo nome, CPF/CNPJ, email ou telefone
-- **Filtrar** por categoria usando os botões no topo
-- **Ordenar** por nome, data de cadastro ou número de casos ativos
+- **Filtrar** por categoria (Parte Contrária, Testemunha, Perito…)
 
 ## Excluir contato
 

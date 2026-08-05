@@ -76,21 +76,27 @@ Gerencie os membros do seu escritório e suas permissões.
 
 ### Funções disponíveis
 
-| Função | Descrição | Permissões |
+| Função | Badge | Permissões |
 |---|---|---|
-| **Administrador** | Gestor do escritório | Acesso total: casos, configurações, usuários, faturamento |
-| **Advogado** | Advogado do escritório | Gerenciar casos, documentos, prazos, usar IA |
-| **Estagiário** | Estagiário ou auxiliar | Visualizar casos, fazer upload de documentos, consultar prazos |
-| **Secretária** | Equipe administrativa | Visualizar casos, gerenciar prazos, acompanhar andamentos |
+| **Administrador** | Vermelho | Acesso total: casos, configurações, usuários, faturamento, analytics |
+| **Secretária** | Laranja | Visão total do escritório (casos, prazos, calendário, analytics, auditoria) — sem Configurações e Usuários |
+| **Advogado** | Azul | Gerenciar casos, documentos, prazos, modelos, usar IA |
+| **Estagiário** | Verde | Visualizar e criar casos, prazos, documentos, usar IA |
+| **Somente Leitura** | Cinza | Visualizar casos, prazos e documentos |
+| **Cliente** | Âmbar | Acesso ao portal do cliente |
 
 ### Convidar novo usuário
 
 1. Acesse **Configurações > Usuários**
 2. Clique em **Convidar Usuário**
 3. Preencha o **e-mail** do convidado
-4. Selecione a **função** (administrador, advogado, estagiário, secretária)
+4. Selecione a **função** (administrador, secretária, advogado, estagiário, somente leitura)
 5. Clique em **Enviar Convite**
 6. O convidado receberá um e-mail com link para criar a conta
+
+:::info Normalização automática de nome
+Ao aceitar o convite, o nome informado é automaticamente formatado em **Title Case** — por exemplo, "JOAO DA SILVA" se torna "João da Silva".
+:::
 
 ### Gerenciar usuários
 
@@ -100,9 +106,19 @@ Na lista de usuários, você pode:
 - **Desativar** — Revogar acesso sem excluir o histórico
 - **Remover** — Excluir o usuário do escritório
 
-:::warning Apenas administradores
-O gerenciamento de usuários está disponível apenas para usuários com função de **Administrador**.
+:::warning Gerenciamento restrito
+As ações de convidar, alterar função, desativar e remover usuários estão disponíveis apenas para **Administradores**. A **Secretária** pode visualizar a lista de usuários, mas não pode gerenciá-los.
 :::
+
+### Desativar usuário com reatribuição
+
+Ao tentar desativar um advogado que possui pendências em nome dele, o sistema exibe automaticamente um modal de confirmação com os seguintes contadores:
+
+- Número de **casos** com o advogado como responsável
+- Número de **prazos pendentes** atribuídos a ele
+- Número de **consultas agendadas** com ele
+
+Antes de confirmar a desativação, é obrigatório selecionar um **advogado substituto**. Ao confirmar, o sistema transfere de forma atômica todos os casos, prazos e consultas para o novo responsável em uma única operação, sem deixar registros órfãos.
 
 ## Planos e faturamento
 
