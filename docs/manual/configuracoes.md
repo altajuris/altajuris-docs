@@ -130,11 +130,23 @@ Antes de confirmar a desativação, é obrigatório selecionar um **advogado sub
 | **Pro** | R$ 79/mês | Tudo do Básico + análise de viabilidade, chat IA, WhatsApp parser |
 | **Avançado** | R$ 149/mês | Tudo do Pro + case builder, petição automática, marketplace |
 
-### Plano para advogados e escritórios
+### Planos para advogados e escritórios
 
-| Plano | Preço | Recursos |
-|---|---|---|
-| **Escritório** | R$ 199–499/mês | Casos ilimitados, sincronização, IA completa, equipe, marketplace |
+| Plano | Preço | Advogados | Minutas e análises com IA |
+|---|---|---|---|
+| **Teste** | grátis, 14 dias | 1 | 10/mês |
+| **Advogado** | R$ 199/mês | 1 | 100/mês |
+| **Escritório** | R$ 499/mês | até 5 | 500/mês |
+| **Corporativo** | R$ 999/mês | equipe | 5.000/mês |
+
+Todos incluem casos ilimitados; sincronização com tribunais a partir do
+**Advogado**.
+
+:::info Valores conferidos em 28/08/2026
+Preço e limites vivem no banco e aparecem em **Configurações > Planos**, que é
+sempre a fonte válida. Esta tabela é cópia manual e pode atrasar — na dúvida,
+vale a da tela.
+:::
 
 ### Gerenciar plano
 
