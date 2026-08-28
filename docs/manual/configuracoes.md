@@ -134,13 +134,17 @@ Antes de confirmar a desativação, é obrigatório selecionar um **advogado sub
 
 | Plano | Preço | Advogados | Minutas e análises com IA |
 |---|---|---|---|
-| **Teste** | grátis, 14 dias | 1 | 10/mês |
+| **Teste** | grátis, 14 dias | 1 | 25/mês |
 | **Advogado** | R$ 199/mês | 1 | 100/mês |
-| **Escritório** | R$ 499/mês | até 5 | 500/mês |
-| **Corporativo** | R$ 999/mês | equipe | 5.000/mês |
+| **Equipe** | R$ 349/mês | até 3 | 250/mês |
+| **Escritório** | R$ 499/mês | até 6 | 500/mês |
 
 Todos incluem casos ilimitados; sincronização com tribunais a partir do
-**Advogado**.
+**Advogado**. Acima do Escritório, o plano **Corporativo** é sob consulta.
+
+O limite conta **advogados**, não usuários: secretária, estagiário e perfis de
+leitura não ocupam vaga. Ao convidar um advogado além do teto, o sistema recusa
+e indica o plano que comporta a equipe.
 
 :::info Valores conferidos em 28/08/2026
 Preço e limites vivem no banco e aparecem em **Configurações > Planos**, que é

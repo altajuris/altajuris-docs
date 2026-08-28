@@ -431,8 +431,10 @@ def build():
                 # lugar nenhum do sistema. O que os planos limitam é IA,
                 # documentos e exportações — não a quantidade de casos.
                 "Advogado — R$ 199/mês (1 advogado, 100 minutas e análises IA)",
-                "Escritório — R$ 499/mês (até 5 advogados, 500 minutas e análises IA)",
-                "Corporativo — R$ 999/mês (equipe, 5.000 minutas e análises IA)",
+                "Equipe — R$ 349/mês (até 3 advogados, 250 minutas e análises IA)",
+                "Escritório — R$ 499/mês (até 6 advogados, 500 minutas e análises IA)",
+                "Corporativo — sob consulta",
+                "Secretária e estagiário não ocupam vaga",
                 "Integração com marketplace para leads",
                 "Cobrança Asaas (boleto/PIX) para clientes",
             ],
