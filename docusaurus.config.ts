@@ -6,10 +6,15 @@ const config: Config = {
   title: 'AltaJuris',
   tagline: 'Plataforma Inteligente para Escritórios de Advocacia',
   favicon: 'img/favicon.ico',
-  url: 'https://GrupoJLM.github.io',
-  baseUrl: '/',
-  organizationName: 'GrupoJLM',
-  projectName: 'legaltech-docs',
+  // O rebrand para AltaJuris passou por aqui e não levou estes quatro campos.
+  // O repositório é `altajuris/altajuris-docs` e o Pages serve em
+  // https://altajuris.github.io/altajuris-docs/ — com `baseUrl: '/'` o HTML
+  // pedia `/assets/css/...` na raiz do domínio e tomava 404: o site abria
+  // como texto cru, sem estilo e sem JavaScript, desde o rebrand de 16/08.
+  url: 'https://altajuris.github.io',
+  baseUrl: '/altajuris-docs/',
+  organizationName: 'altajuris',
+  projectName: 'altajuris-docs',
   trailingSlash: false,
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
