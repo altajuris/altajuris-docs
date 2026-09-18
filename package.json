@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "npm run build:manual && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -14,7 +14,8 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "build:pptx": "python3 scripts/build_pptx.py",
-    "build:all": "npm run build && npm run build:pptx && cp -f build/AltaJuris-Apresentacao.pptx build/downloads/ 2>/dev/null || mkdir -p build/downloads && cp build/AltaJuris-Apresentacao.pptx build/downloads/"
+    "build:all": "npm run build && npm run build:pptx && cp -f build/AltaJuris-Apresentacao.pptx build/downloads/ 2>/dev/null || mkdir -p build/downloads && cp build/AltaJuris-Apresentacao.pptx build/downloads/",
+    "build:manual": "python3 scripts/exportar_manual.py"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",
