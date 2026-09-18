@@ -18,6 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # O histórico inteiro, porque `exportar_manual.py` tira a data de
+          # cada página de `git log -1` no arquivo. Com o checkout raso
+          # (padrão, fetch-depth: 1) só existe um commit, e TODA página sai
+          # datada de hoje — o campo que deveria fazer página velha parecer
+          # velha passa a fazer o contrário, sem erro nenhum aparecer.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20

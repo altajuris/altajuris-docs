@@ -109,6 +109,18 @@ def conferir(dados: list[dict]) -> list[str]:
             problemas.append(f"{p['id']}: {len(p['texto'])} chars de prosa — vazio?")
         if not p["atualizado_em"]:
             problemas.append(f"{p['id']}: sem data de atualização")
+
+    # Todas as páginas com a MESMA data é a assinatura do checkout raso: com um
+    # commit só no histórico, `git log -1` devolve a mesma data para tudo. A
+    # data existe para fazer página velha parecer velha; quebrada assim ela faz
+    # o contrário — jura que a página de março é de hoje — e nada acusa.
+    datas = {p["atualizado_em"] for p in dados if p["atualizado_em"]}
+    if len(dados) >= 5 and len(datas) == 1:
+        problemas.append(
+            f"todas as {len(dados)} páginas datadas de {datas.pop()}: o histórico "
+            "do git está raso. Use `fetch-depth: 0` no checkout."
+        )
+
     return problemas
 
 
