@@ -9,41 +9,81 @@ sidebar_position: 11
 A página **Usuários** permite gerenciar todos os membros do escritório: convidar novos integrantes, alterar funções e desativar usuários quando necessário.
 
 :::warning Acesso restrito
-A página Usuários está disponível apenas para **Administradores**. A **Secretária** pode visualizar a lista, mas não pode convidar, alterar funções ou desativar usuários.
+A página **Usuários** está disponível para **Proprietária** e **Administrador**.
+A **Secretária** e a **Coordenação** não alcançam esta página.
 :::
 
-## Funções e permissões
+## As funções
 
-O AltaJuris possui seis funções, cada uma com um nível de acesso diferente:
+O AltaJuris tem oito funções para quem trabalha no escritório, mais o acesso do
+cliente. Cada uma existe para um recorte de responsabilidade diferente.
 
-| Função | Badge | O que pode fazer |
+| Função | Cor | Para quem é |
 |---|---|---|
-| **Administrador** | 🔴 Vermelho | Acesso total: casos, usuários, configurações, faturamento, analytics |
-| **Secretária** | 🟠 Laranja | Visão total do escritório (casos, prazos, calendário, analytics, auditoria) — sem Configurações e Usuários |
-| **Advogado** | 🔵 Azul | Gerenciar casos, documentos, prazos, modelos, usar IA |
-| **Estagiário** | 🟢 Verde | Visualizar e criar casos, prazos, documentos, usar IA |
-| **Somente Leitura** | ⚫ Cinza | Visualizar casos, prazos e documentos — sem criar ou editar |
-| **Cliente** | 🟡 Âmbar | Acesso ao portal do cliente |
+| **Proprietária** | 🌹 Rosa | A titular do escritório. Alcança tudo que o Administrador alcança e mais a **política de preços** e o **caixa do escritório** |
+| **Administrador** | 🔴 Vermelho | Quem administra o sistema: usuários, configurações, integrações, plano |
+| **Coordenação** | 🟣 Índigo | Advogada que também responde pelo escritório: encerra e distribui qualquer caso, e supervisiona a equipe |
+| **Financeiro** | 🩵 Ciano | Quem cuida do dinheiro: todas as cobranças e o consolidado. **Não** define preço nem mexe em processo |
+| **Secretária** | 🟠 Laranja | Apoio administrativo com visão do escritório, sem Configurações nem Usuários |
+| **Advogado** | 🔵 Azul | Conduz os próprios casos, prazos, documentos e usa a IA |
+| **Estagiário** | 🟢 Verde | Visualiza e cria casos, prazos e documentos; usa a IA |
+| **Somente Leitura** | ⚫ Cinza | Só visualiza casos, prazos e documentos |
+| **Cliente** | 🟡 Âmbar | Portal do cliente — vê apenas os próprios processos |
 
-### Comparativo de acesso por área
+:::info Duas coisas que só a Proprietária faz
+Em tudo o mais, ser Administrador basta. Em **duas** não:
 
-| Área | Administrador | Secretária | Advogado | Estagiário | Somente Leitura |
-|---|:---:|:---:|:---:|:---:|:---:|
-| Casos | ✓ | ✓ | ✓ | ✓ | ✓ (visualizar) |
-| Prazos | ✓ | ✓ | ✓ | ✓ | ✓ (visualizar) |
-| Documentos | ✓ | ✓ | ✓ | ✓ | ✓ (visualizar) |
-| Calendário (todos) | ✓ | ✓ | — | — | — |
-| Calendário (próprio) | ✓ | ✓ | ✓ | ✓ | — |
-| CRM | ✓ | ✓ | ✓ | ✓ | ✓ (visualizar) |
-| Consultas | ✓ | ✓ | ✓ | ✓ | — |
-| IA / Chat | ✓ | ✓ | ✓ | ✓ | — |
-| Modelos | ✓ | ✓ | ✓ | — | — |
-| Publicações | ✓ | ✓ | ✓ | — | — |
-| Analytics | ✓ | ✓ | — | — | — |
-| Auditoria | ✓ | ✓ | — | — | — |
-| Configurações | ✓ | — | — | — | — |
-| Usuários | ✓ | — | — | — | — |
-| Faturamento | ✓ | — | — | — | — |
+- **Tabela de Preços** — todo mundo consulta (a advogada precisa do valor na
+  hora da consulta, com a cliente na frente dela), mas só a Proprietária edita.
+- **Caixa do escritório** — a advogada emite cobrança para o cliente dela e vê
+  as dela; a visão do escritório inteiro é da Proprietária e do Financeiro.
+
+Não é hierarquia: é que preço e caixa são decisão de quem é dono do escritório,
+não de quem administra o sistema.
+:::
+
+### Quais funções consomem assento
+
+O plano é cobrado por **assento de advogado**. Consomem assento:
+
+| Consome assento | Não consome |
+|---|---|
+| Proprietária, Administrador, Coordenação, Advogado | Financeiro, Secretária, Estagiário, Somente Leitura, Cliente |
+
+Criar um Financeiro ou uma Secretária **não aumenta a fatura**. Promover alguém
+a Advogado ou Coordenação, sim.
+
+### O que cada função alcança
+
+| Área | Proprietária | Admin | Coordenação | Financeiro | Secretária | Advogado | Estagiário | Leitura |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Painel | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Casos | ✓ | ✓ | ✓ | ✓ (ver) | ✓ | ✓ | ✓ | ✓ (ver) |
+| Prazos | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | ✓ (ver) |
+| Calendário | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | ✓ |
+| CRM | ✓ | ✓ | ✓ | ✓ (ver) | ✓ | ✓ | ✓ | ✓ (ver) |
+| Documentos | ✓ | ✓ | ✓ | ✓ (ver) | ✓ | ✓ | ✓ | ✓ (ver) |
+| Publicações | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | — |
+| Tarefas | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | — |
+| Modelos | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | — |
+| IA / Chat | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | — |
+| Captação | ✓ | ✓ | ✓ | — | ✓ | ✓ | — | — |
+| Legislativo | ✓ | ✓ | ✓ | — | ✓ | ✓ | — | — |
+| Financeiro | ✓ escritório | ✓ só as suas | ✓ só as suas | ✓ escritório | ✓ só as suas | ✓ só as suas | — | — |
+| **Tabela de Preços** | ✓ **editar** | ✓ consultar | ✓ consultar | ✓ consultar | ✓ consultar | ✓ consultar | — | — |
+| Analytics da Equipe | ✓ | ✓ | ✓ | ✓ | ✓ | — | — | — |
+| Auditoria | ✓ | ✓ | ✓ | — | ✓ | ✓ | — | — |
+| Marketplace | — | — | ✓ | — | — | ✓ | — | — |
+| Configurações | ✓ | ✓ | — | — | — | — | — | — |
+| Usuários | ✓ | ✓ | — | — | — | — | — | — |
+
+:::tip Coordenação x Administrador
+Confundem-se com facilidade, e a diferença é limpa: a **Coordenação** responde
+pelo **trabalho** — distribui casos, encerra qualquer processo, acompanha a
+equipe. O **Administrador** responde pelo **sistema** — usuários, integrações,
+plano, configuração do escritório. Uma não alcança Configurações; a outra não
+precisa de OAB.
+:::
 
 ## Convidar novo usuário
 
@@ -121,7 +161,12 @@ O usuário recupera o acesso com a mesma função que tinha antes da desativaç�
 
 ## Dicas de segurança
 
-- **Use funções mínimas necessárias** — Prefira "Estagiário" a "Advogado" para quem não precisa gerenciar casos.
+- **Use funções mínimas necessárias** — Prefira "Estagiário" a "Advogado" para
+  quem não precisa conduzir casos. Além de reduzir acesso, **economiza**: o
+  Estagiário não consome assento e o Advogado consome.
+- **Financeiro não é Administrador** — quem cuida do caixa não precisa de
+  acesso a usuários, integrações nem plano. A função Financeiro existe
+  exatamente para isso, e não consome assento.
 - **Desative imediatamente** quando um membro deixar o escritório — Não espere para revogar o acesso.
 - **Nunca compartilhe credenciais** — Cada pessoa deve ter sua própria conta para que o log de auditoria seja confiável.
 - **Revise periodicamente** a lista de usuários para identificar contas não utilizadas.
