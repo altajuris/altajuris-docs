@@ -4,3 +4,7 @@ build/
 .cache-loader/
 .DS_Store
 .env
+
+# Gerado por scripts/exportar_manual.py no build — versionar deixaria
+# entrar desatualizado, que é o defeito que o chatbot de ajuda tem a evitar.
+static/manual.json
