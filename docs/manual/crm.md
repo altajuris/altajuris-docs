@@ -24,12 +24,17 @@ A busca ignora formatação — `038.393.298-09` e `03839329809` retornam o mesm
 
 ### Abas (sem busca ativa)
 
-Quando a barra de busca está vazia, o painel exibe duas abas:
+Quando a barra de busca está vazia, o painel exibe três abas:
 
 | Aba | O que exibe |
 |---|---|
 | **Clientes** | Contatos com categoria "Cliente" — quem contrata o escritório |
-| **Contatos** | Todos os contatos (partes contrárias, testemunhas, peritos e outros) |
+| **Prospecção** | Quem o escritório está tentando conquistar e ainda não fechou |
+| **Contatos** | Os demais — partes contrárias, testemunhas, peritos, juízes e outros |
+
+:::info Por que Prospecção tem aba própria
+Ela responde uma pergunta diferente: **quem ainda não fechou**. Se ficasse dentro de Clientes, contaminaria a contagem de clientes, que é o número que o escritório usa para saber o próprio tamanho.
+:::
 
 ## Cadastrar novo contato
 
@@ -98,6 +103,7 @@ O nome é repadronizado para Title Case ao salvar, mesmo que você digite em cai
 
 | Categoria | Uso |
 |---|---|
+| **Prospecção** | Quem procurou o escritório e ainda não contratou — aparece na aba "Prospecção" |
 | **Cliente** | Quem contratou o escritório — aparece na aba "Clientes" |
 | **Parte Contrária** | Réu, reclamado ou polo passivo em qualquer processo |
 | **Testemunha** | Testemunha em processo |
@@ -107,6 +113,21 @@ O nome é repadronizado para Title Case ao salvar, mesmo que você digite em cai
 
 :::info Importação automática de partes
 Quando você importa ou sincroniza um processo, o AltaJuris cria automaticamente os contatos das partes como **Parte Contrária** (ou **Autor**, dependendo do polo). Se o CPF/CNPJ da parte já estiver cadastrado, o sistema vincula ao contato existente em vez de criar um duplicado.
+:::
+
+## Prospecção e a agenda
+
+Enquanto o contato estiver em **Prospecção**, todo compromisso com ele é uma **consulta** — e ele pode ter **quantas consultas forem necessárias**. Conquistar cliente leva o número de conversas que levar.
+
+A agenda ajusta o tipo sozinha, nos dois sentidos:
+
+- marcou **atendimento** ou **consultoria** para quem está em prospecção? vira **consulta**, porque quem ainda não fechou não recebe atendimento — o lead ficaria aberto ao lado de um atendimento já realizado;
+- marcou **consulta** para quem já tem trabalho no escritório? vira **atendimento**, porque aquilo já não é prospecção.
+
+A troca acontece antes de você preencher o resto, para não levar erro no fim do formulário.
+
+:::tip Quando virar cliente
+Fechado o contrato, mude a categoria do contato para **Cliente**. A partir daí ele sai da aba Prospecção, entra na contagem de clientes, e os compromissos passam a ser atendimento.
 :::
 
 ## Vincular contato a um caso
