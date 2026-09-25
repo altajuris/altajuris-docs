@@ -69,13 +69,21 @@ a Advogado ou Coordenação, sim.
 | IA / Chat | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | — |
 | Captação | ✓ | ✓ | ✓ | — | ✓ | ✓ | — | — |
 | Legislativo | ✓ | ✓ | ✓ | — | ✓ | ✓ | — | — |
-| Financeiro | ✓ escritório | ✓ só as suas | ✓ só as suas | ✓ escritório | ✓ só as suas | ✓ só as suas | — | — |
+| Financeiro | ✓ escritório | ✓ só as suas | — | ✓ escritório | — | ✓ só as suas | — | — |
 | **Tabela de Preços** | ✓ **editar** | ✓ consultar | ✓ consultar | ✓ consultar | ✓ consultar | ✓ consultar | — | — |
-| Analytics da Equipe | ✓ | ✓ | ✓ | ✓ | ✓ | — | — | — |
-| Auditoria | ✓ | ✓ | ✓ | — | ✓ | ✓ | — | — |
+| Analytics da Equipe | ✓ | ✓ | — | — | — | — | — | — |
+| Auditoria | ✓ | ✓ | ✓ | — | ✓ | ✓ **só as suas** | — | — |
 | Marketplace | — | — | ✓ | — | — | ✓ | — | — |
 | Configurações | ✓ | ✓ | — | — | — | — | — | — |
 | Usuários | ✓ | ✓ | — | — | — | — | — | — |
+
+:::info Três linhas que surpreendem
+**Financeiro** — a Coordenação e a Secretária **não entram**. Não é escopo menor, é recusa da API: o item existiu no menu até 21/09/2026 e levava a uma tela com erro. No caso da Coordenação a exclusão é deliberada — ela coordena o trabalho e não olha receita, e é a única coisa que ela tem a menos que um Advogado.
+
+**Analytics da Equipe** — só Proprietária e Administrador, desde 18/09/2026. A Coordenação e a Secretária continuam com a agenda e os prazos de todo o escritório: operar o escritório não é a mesma coisa que medir quem trabalha nele.
+
+**Auditoria** — o Advogado entra, mas vê **apenas as próprias ações**. Quem supervisiona enxerga a equipe; quem é supervisionado enxerga a si. Ver [Auditoria](./auditoria.md).
+:::
 
 :::tip Coordenação x Administrador
 Confundem-se com facilidade, e a diferença é limpa: a **Coordenação** responde
