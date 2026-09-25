@@ -8,6 +8,17 @@ sidebar_position: 16
 
 São duas telas diferentes, com públicos diferentes: **Minhas Métricas**, que cada pessoa vê sobre si, e **Analytics da Equipe**, que compara o escritório.
 
+## O que estas telas respondem
+
+Se a sua pergunta é uma destas, é aqui:
+
+- Quantos casos cada advogado abriu no mês?
+- Quem da equipe está com prazo atrasado?
+- Quantos processos eu conduzi este trimestre?
+- Qual a produtividade da equipe, pessoa por pessoa?
+- Quantos documentos foram enviados no período?
+- Quanto tempo, em média, um caso leva até encerrar?
+
 ## Minhas Métricas
 
 Aberta a **todas as funções do escritório**. Cada pessoa vê o próprio desempenho, ninguém vê o de outra.
