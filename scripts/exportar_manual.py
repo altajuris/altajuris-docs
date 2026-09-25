@@ -121,6 +121,37 @@ def conferir(dados: list[dict]) -> list[str]:
             "do git está raso. Use `fetch-depth: 0` no checkout."
         )
 
+    problemas.extend(_fora_do_sumario(dados))
+
+    return problemas
+
+
+def _fora_do_sumario(dados: list[dict]) -> list[str]:
+    """Página indexada que o site não mostra — e o contrário.
+
+    O chatbot lê o `manual.json`, que sai de varrer as pastas; a pessoa lê o
+    site, que sai do `sidebars.ts`. São duas listas, e escrever uma página é
+    editar as duas. Esquecer o sumário produz o pior dos dois mundos: o bot cita
+    uma página com um link que não abre.
+
+    Aconteceu em 24/09/2026, com seis páginas de uma vez — só não foi ao ar
+    porque eu lembrei de editar o sumário na mão.
+    """
+    sumario = Path(__file__).resolve().parents[1] / "sidebars.ts"
+    if not sumario.is_file():
+        return ["sidebars.ts não encontrado — o sumário do site não pôde ser conferido"]
+
+    citadas = set(re.findall(r"'((?:manual|guias)/[\w-]+)'", sumario.read_text(encoding="utf-8")))
+    exportadas = {p["id"] for p in dados}
+
+    problemas = []
+    for pid in sorted(exportadas - citadas):
+        problemas.append(
+            f"{pid}: indexada para o chatbot e ausente do sumário — "
+            f"acrescente a `sidebars.ts`, senão o link da resposta não abre"
+        )
+    for pid in sorted(citadas - exportadas):
+        problemas.append(f"{pid}: está no sumário e não foi exportada — arquivo renomeado ou apagado?")
     return problemas
 
 
