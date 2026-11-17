@@ -7,12 +7,20 @@ const config: Config = {
   tagline: 'Plataforma Inteligente para Escritórios de Advocacia',
   favicon: 'img/favicon.ico',
   // O rebrand para AltaJuris passou por aqui e não levou estes quatro campos.
-  // O repositório é `altajuris/altajuris-docs` e o Pages serve em
-  // https://altajuris.github.io/altajuris-docs/ — com `baseUrl: '/'` o HTML
-  // pedia `/assets/css/...` na raiz do domínio e tomava 404: o site abria
-  // como texto cru, sem estilo e sem JavaScript, desde o rebrand de 16/08.
-  url: 'https://altajuris.github.io',
-  baseUrl: '/altajuris-docs/',
+  // 🔑 O site saiu do GitHub Pages para a AWS em 17/11/2026 — decisão do
+  // Juliano: 100% AWS, como os demais serviços. Com domínio próprio o site
+  // passa a viver na RAIZ, então `baseUrl` é '/'.
+  //
+  // ⚠ Este par é a causa clássica de "o site abre como texto cru": o HTML
+  // pede os assets a partir do `baseUrl`, e se ele não casar com onde o site
+  // está servido, todo CSS e JS tomam 404 sem nada ficar vermelho no build.
+  // Foi o que aconteceu entre o rebrand de 16/08 e a correção para o Pages.
+  //
+  // O `url` vem do ambiente porque dev e prod têm hosts diferentes e o
+  // mesmo repositório serve os dois. Sem a variável, o sitemap e os links
+  // canônicos do site de DEV apontariam para produção.
+  url: process.env.DOCS_URL || 'https://docs.altajuris.com.br',
+  baseUrl: '/',
   organizationName: 'altajuris',
   projectName: 'altajuris-docs',
   trailingSlash: false,

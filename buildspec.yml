@@ -1,0 +1,120 @@
+version: 0.2
+
+# Site de documentação (Docusaurus) → S3 + CloudFront.
+#
+# 🔑 Substitui o GitHub Actions, desligado em 17/11/2026 por decisão do
+# Juliano: 100% AWS, como os demais serviços. O workflow antigo publicava em
+# `altajuris.github.io/altajuris-docs/`.
+#
+# ⚠ Este arquivo serve os DOIS pipelines. Os valores abaixo são os de DEV; o
+# projeto de CodeBuild de produção define os seus, e no CodeBuild o valor do
+# PROJETO vence o do buildspec.
+#
+# 🔴 Literal dentro de um comando NÃO é variável — nenhum projeto o alcança.
+# O que for específico de ambiente passa por `env.variables`.
+env:
+  variables:
+    AWS_DEFAULT_REGION: us-east-1
+    CLOUDFRONT_DISTRIBUTION_ID: E3UMK1G7PA3EKF
+    S3_BUCKET: development-altajuris-docs-site
+
+    # Vai para `docusaurus.config.ts`. Sem isto, o sitemap e os links
+    # canônicos do site de DEV apontariam para produção.
+    DOCS_URL: https://docs-dev.altajuris.com.br
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+      python: 3.12
+    commands:
+      # `python-pptx` não está em requirements nenhum — o repositório nunca
+      # teve um. O `build_pptx.py` o importa no topo e falha de imediato sem
+      # ele. Fixado em versão exata para o build não mudar sozinho.
+      - pip install --quiet python-pptx==1.0.2
+      - npm ci
+
+  # ⚠ `on-failure: ABORT` é o que de fato interrompe. O CodeBuild roda
+  # `post_build` MESMO com o `build` vermelho — foi assim que, em 03/09/2026,
+  # o `altajuris-web` imprimiu "deploy abortado" e publicou do mesmo jeito.
+  build:
+    on-failure: ABORT
+    commands:
+      # 🔴 O histórico do git é CONTEÚDO, não conveniência.
+      #
+      # `exportar_manual.py` tira a data de cada página de `git log -1` no
+      # arquivo. O artefato precisa ser `CODEBUILD_CLONE_REF` (definido na
+      # raiz do pipeline), senão não há `.git`, o comando sai vazio, a função
+      # devolve "" e TODO o manual fica sem data — sem erro em lugar nenhum.
+      # Esta conferência existe para isso não voltar em silêncio.
+      - |
+        set -e
+        echo "=== o build tem histórico de git? ==="
+        if ! git rev-parse --git-dir > /dev/null 2>&1; then
+          echo "FALHA: sem repositório git. O artefato do pipeline tem de ser"
+          echo "       CODEBUILD_CLONE_REF, e a role do CodeBuild precisa de"
+          echo "       codestar-connections:UseConnection."
+          exit 1
+        fi
+        N=$(git rev-list --count HEAD)
+        echo "  commits disponíveis: $N"
+        if [ "$N" -lt 2 ]; then
+          echo "FALHA: clone raso ($N commit). Toda página sairia datada de hoje."
+          exit 1
+        fi
+
+      - echo "=== typecheck ==="
+      - npx tsc --noEmit
+
+      # ⚠ ANTES do build do site: o script grava em `static/downloads/`, e é
+      # o `docusaurus build` que copia `static/` para dentro de `build/`.
+      # Invertido, a apresentação não entra no pacote e o link cai em 404.
+      - echo "=== apresentação (pptx) ==="
+      - python3 scripts/build_pptx.py
+
+      # `npm run build` encadeia `build:manual` (exportar_manual.py) e
+      # `docusaurus build`.
+      - echo "=== build do site ==="
+      - npm run build
+
+      # O que o build produziu tem de corresponder a ESTE ambiente. Build
+      # verde com a configuração do outro é a falha que não dá erro em lugar
+      # nenhum.
+      #
+      # ⚠ `grep -r`, e NUNCA guardar o conteúdo numa variável. Em 17/11/2026
+      # um passo assim no `altajuris-manager` guardou ~1 MB de JS num shell
+      # var e matou a fase SEGUINTE com `aws: Argument list too long`.
+      - |
+        set -e
+        echo "=== conferindo o pacote gerado ==="
+        test -f build/index.html || { echo "FALHA: build/index.html não existe"; exit 1; }
+        if grep -qrF -- "altajuris.github.io" build/ ; then
+          echo "FALHA: o pacote ainda referencia o GitHub Pages"
+          exit 1
+        fi
+        if ! grep -qrF -- "$DOCS_URL" build/ ; then
+          echo "FALHA: '$DOCS_URL' não aparece no pacote gerado"
+          exit 1
+        fi
+        echo "  ok: sem github.io, e com $DOCS_URL"
+        # `baseUrl: '/'` — o HTML não pode pedir assets sob /altajuris-docs/.
+        if grep -qrF -- '/altajuris-docs/assets' build/ ; then
+          echo "FALHA: HTML pedindo assets sob /altajuris-docs/ — baseUrl errado"
+          exit 1
+        fi
+        echo "  ok: baseUrl na raiz"
+
+  post_build:
+    commands:
+      # 🔑 ORDEM: os estáticos ANTES do HTML.
+      #
+      # Em 08/09/2026 uma advogada viu "Loading chunk failed" no app porque
+      # o HTML novo subiu antes dos arquivos que ele referencia. Documento
+      # nunca pode ser publicado antes do que ele carrega.
+      #
+      # Sem `--delete` nos assets: quem estiver com a página aberta durante a
+      # publicação continua achando o arquivo antigo.
+      - aws s3 sync build/assets/ s3://$S3_BUCKET/assets/ --cache-control "public, max-age=31536000, immutable"
+      - aws s3 sync build/ s3://$S3_BUCKET/ --delete --cache-control "public, max-age=300" --exclude "assets/*"
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+      - echo "Deploy da documentação concluído."
