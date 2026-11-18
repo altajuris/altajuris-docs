@@ -51,7 +51,7 @@ static/img/             ← screenshots da UI
 ## Integração com chatbot de auto-ajuda
 ```
 Ao fazer deploy de altajuris-docs:
-  worker recebe job via SQS legaltech-embeddings
+  worker recebe job via SQS development-altajuris-embeddings.fifo
   → doc_indexer.py lê todos os .md
   → gera embeddings via Amazon Titan
   → armazena no Aurora (pgvector)
